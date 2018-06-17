@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Power</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="body-container">
+        <header>
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, null, null, null, null)</li>
+                    <li>@Html.ActionLink("About", "About", "Home", null, null, null, null, null)</li>
+                    <li>@Html.ActionLink("Programs", "Index", "Program", null, null, null, null, null)</li>
+                </ul>
+            </nav>
+            <div id="header-image-container">
+                <img id="header-image" src="~/images/Power.png" />
+            </div>
+        </header>
+        <div>
+            @RenderBody()
+            <footer>
+                &copy 2018 Tom Vanswijgenhoven
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
