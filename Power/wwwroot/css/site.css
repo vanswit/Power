@@ -16,6 +16,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    background-color: #808080;
 }
 
 header nav {
@@ -30,5 +31,5 @@ header nav li {
     }
 
 header nav a {
-    color:#ffffff;
+    color:#ffd800;
 }
