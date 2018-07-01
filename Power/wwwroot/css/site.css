@@ -13,8 +13,21 @@
     padding: 0;
 }
 
+#block-list-container {
+    
+}
+
 #content-container {
-    margin: 20px;
+    text-align: center;
+}
+
+.block-list {
+    background-color: #ffd800;
+    width: 200px;
+    height: 225px;
+    margin: 50px;
+    display: inline-block;
+    border: solid;
 }
 
 html, body {
