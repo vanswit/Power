@@ -116,6 +116,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Migrations\20180701134447_InitialCreate.cs" />
+    <Compile Include="Migrations\20180701134447_InitialCreate.designer.cs">
+      <DependentUpon>20180701134447_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

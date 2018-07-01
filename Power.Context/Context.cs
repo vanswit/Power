@@ -14,6 +14,7 @@ namespace Power.Context
             : base(options)
         { }
 
-        public DbSet<ITrainingItem> TrainingItems { get; set; }
+        public DbSet<Program> Programs { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }
