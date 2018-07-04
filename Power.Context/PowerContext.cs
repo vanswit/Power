@@ -8,10 +8,10 @@ using Power.BO;
 
 namespace Power.Context
 {
-    public class Context : DbContext
+    public class PowerContext : DbContext
     {
-        public Context(DbContextOptions<Context> options)
-            : base(options)
+        public PowerContext(DbContextOptions<PowerContext> options)
+    : base(options)
         { }
 
         public DbSet<Program> Programs { get; set; }

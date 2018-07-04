@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.http.abstractions\2.0.3\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.0.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
@@ -115,12 +118,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context.cs" />
-    <Compile Include="Migrations\20180701134447_InitialCreate.cs" />
-    <Compile Include="Migrations\20180701134447_InitialCreate.designer.cs">
-      <DependentUpon>20180701134447_InitialCreate.cs</DependentUpon>
+    <Compile Include="CourseDbo.cs" />
+    <Compile Include="Migrations\20180704125846_InitialCreate.cs" />
+    <Compile Include="Migrations\20180704125846_InitialCreate.designer.cs">
+      <DependentUpon>20180704125846_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ContextModelSnapshot.cs" />
+    <Compile Include="Migrations\PowerContextModelSnapshot.cs" />
+    <Compile Include="PowerContext.cs" />
+    <Compile Include="ProgramDbo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,5 +138,6 @@
       <Name>Power.BO</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

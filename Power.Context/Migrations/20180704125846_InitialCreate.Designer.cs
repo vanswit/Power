@@ -10,8 +10,8 @@ using System;
 
 namespace Power.Context.Migrations
 {
-    [DbContext(typeof(Context))]
-    [Migration("20180701134447_InitialCreate")]
+    [DbContext(typeof(PowerContext))]
+    [Migration("20180704125846_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
