@@ -10,13 +10,21 @@ namespace Power.Context
 {
     public class CourseDbo
     {
-        public CourseDbo()
+        private DbContextOptionsBuilder<PowerContext> options;
+
+        public CourseDbo(DbContextOptionsBuilder<PowerContext> options)
         {
+            this.options = options;
         }
 
-        public int Add(Course p)
+        public int Add(Course c)
         {
-          
+            using (var context = new PowerContext(options.Options))
+            {
+                context.Courses.Add(c);
+
+                return context.SaveChanges();
+            }
         }
     }
 }
