@@ -3,23 +3,27 @@
     ViewData["Title"] = "Index";
 }
 
+@model IEnumerable<Power.BO.ITrainingItem>
+
+
+
 <div id="view-container">
     <div id="title-container">
         <h2>Programs and courses</h2>
     </div>
     <div id="content-container">
         <div id="block-list-container">
-            <div class="block-list">
+            @foreach (var item in Model)
+            {
 
-            </div>
-            <div class="block-list">
-
-            </div>
-            <div class="block-list">
-
-            </div>
+            <a href="@Url.Action("Details", "Program", new { id = item.Id })">
+                <div class="block-list">
+                    @Html.ValueFor(p => item.Name)
+                    @Html.ValueFor(p => item.Image)
+                </div>
+            </a>
+            }
         </div>
-        @Html.ActionLink("Add Program","AddProgram")
-    </div>
-</div>
-
+            @Html.ActionLink("Add Program", "AddProgram")
+        </div>
+            </div>

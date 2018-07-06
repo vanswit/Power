@@ -11,7 +11,7 @@ namespace Power.BO
         public int Id { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
-        public string Image { get; set; }
+        public TrainingItemImage Image { get; set; }
         public decimal Price { get; set; }
     }
 }

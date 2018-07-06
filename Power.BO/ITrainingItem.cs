@@ -10,8 +10,8 @@ namespace Power.BO
     {
         int Id { get; set; }
         string Name { get; set; }
+        TrainingItemImage Image { get; set; }
         string Content { get; set; }
-        string Image { get; set; }
-       decimal Price { get; set; }
+        decimal Price { get; set; }
     }
 }

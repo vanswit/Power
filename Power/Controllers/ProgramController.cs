@@ -13,7 +13,15 @@ namespace Power.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var optionsBuilder = new DbContextOptionsBuilder<PowerContext>();
+
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0");
+
+            var repo = new ProgramDbo(optionsBuilder);
+
+            IEnumerable<ITrainingItem> programs = repo.GetAll();
+
+            return View(programs);
         }
 
         [HttpPost]
@@ -32,6 +40,21 @@ namespace Power.Controllers
         public IActionResult AddProgram()
         {
             return View();
+        }
+
+        public IActionResult Details(int id)
+        {
+            var program = new Power.BO.Program();
+
+            var optionsBuilder = new DbContextOptionsBuilder<PowerContext>();
+
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0");
+
+            var repo = new ProgramDbo(optionsBuilder);
+
+            program = repo.GetProgram(id);
+
+            return View(program);
         }
     }
 }

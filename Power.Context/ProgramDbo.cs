@@ -28,6 +28,20 @@ namespace Power.Context
             }
         }
 
+        public IEnumerable<ITrainingItem> GetAll()
+        {
+            using (var context = new PowerContext(options.Options))
+            {
+                return context.Programs.ToArray();
+            }
+        }
 
+        public Program GetProgram(int id)
+        {
+            using (var context = new PowerContext(options.Options))
+            {
+                return context.Programs.SingleOrDefault(p => p.Id == id);
+            }
+        }
     }
 }
