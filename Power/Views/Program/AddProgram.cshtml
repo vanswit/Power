@@ -1,4 +1,4 @@
-﻿@model Power.BO.Program
+﻿@model Power.Models.ProgramModel
 
 @{
     ViewData["Title"] = "AddProgram";
@@ -13,24 +13,27 @@
         <form asp-action="AddProgram">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Program.Name" class="control-label"></label>
+                <input asp-for="Program.Name" class="form-control" />
+                <span asp-validation-for="Program.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <label asp-for="Program.Content" class="control-label"></label>
+                <input asp-for="Program.Content" class="form-control" />
+                <span asp-validation-for="Program.Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input type="file" asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                <label asp-for="ImagePath" class="control-label"></label>
+                <input asp-for="ImagePath"  type="file" id="image-selector-hidden" style="display: none;" class="form-control" />
+                <input type="button" id="image-selector-visible" value="Browse..." />
+                <input id="image-selected" class="form-control"/>
+                <label id="extension-error-label" style="display: none; color: red">Please select the appropriate filetype</label>
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="Program.Price" class="control-label"></label>
+                <input asp-for="Program.Price" class="form-control" />
+                <span asp-validation-for="Program.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

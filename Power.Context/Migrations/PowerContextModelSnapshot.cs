@@ -27,13 +27,15 @@ namespace Power.Context.Migrations
 
                     b.Property<string>("Content");
 
-                    b.Property<string>("Image");
+                    b.Property<int?>("ImageId");
 
                     b.Property<string>("Name");
 
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Courses");
                 });
@@ -45,7 +47,7 @@ namespace Power.Context.Migrations
 
                     b.Property<string>("Content");
 
-                    b.Property<string>("Image");
+                    b.Property<int?>("ImageId");
 
                     b.Property<string>("Name");
 
@@ -53,7 +55,37 @@ namespace Power.Context.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ImageId");
+
                     b.ToTable("Programs");
+                });
+
+            modelBuilder.Entity("Power.BO.TrainingItemImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FilePath");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Power.BO.Course", b =>
+                {
+                    b.HasOne("Power.BO.TrainingItemImage", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+                });
+
+            modelBuilder.Entity("Power.BO.Program", b =>
+                {
+                    b.HasOne("Power.BO.TrainingItemImage", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
                 });
 #pragma warning restore 612, 618
         }

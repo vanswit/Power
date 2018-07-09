@@ -8,6 +8,7 @@ namespace Power.Models
 {
     public class ProgramModel
     {
-        public IEnumerable<ITrainingItem> Items { get; set; }
+        public Power.BO.Program Program { get; set;}
+        public string ImagePath { get; set; }
     }
 }

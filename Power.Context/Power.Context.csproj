@@ -276,14 +276,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CourseDbo.cs" />
-    <Compile Include="Migrations\20180705181927_initialcreate.cs" />
-    <Compile Include="Migrations\20180705181927_initialcreate.designer.cs">
-      <DependentUpon>20180705181927_initialcreate.cs</DependentUpon>
+    <Compile Include="Migrations\20180709082741_initialcreate.cs" />
+    <Compile Include="Migrations\20180709082741_initialcreate.designer.cs">
+      <DependentUpon>20180709082741_initialcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\PowerContextModelSnapshot.cs" />
     <Compile Include="PowerContext.cs" />
     <Compile Include="ProgramDbo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrainingItemImageDbo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
