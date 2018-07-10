@@ -13,8 +13,12 @@
     padding: 0;
 }
 
+#trainingitem-image {
+    width: 200px;
+    height: 125px;
+}
+
 #block-list-container {
-    
 }
 
 #content-container {
@@ -22,12 +26,10 @@
 }
 
 .block-list {
-    background-color: #ffd800;
     width: 200px;
     height: 225px;
     margin: 50px;
     display: inline-block;
-    border: solid;
 }
 
 html, body {

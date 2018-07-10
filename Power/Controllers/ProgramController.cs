@@ -38,15 +38,18 @@ namespace Power.Controllers
         [HttpPost]
         public IActionResult AddProgram(ProgramModel programModel)
         {
-            string[] pathParts = programModel.ImagePath.Split("\\");
+            string[] pathParts = programModel.ImageFile.FileName.Split("\\");
 
             var fileName = pathParts.Last();
 
             var imagePath = _env.WebRootPath + "\\images\\" + fileName;
 
-            var fileInfo = new FileInfo(programModel.ImagePath);
+            //var fileInfo = new FileInfo(programModel.ImagePath);
 
-            fileInfo.CopyTo(imagePath);
+            using (var stream = new FileStream(imagePath, FileMode.Create))
+            {
+                programModel.ImageFile.CopyTo(stream);
+            }
 
             var optionsBuilder = new DbContextOptionsBuilder<PowerContext>();
 

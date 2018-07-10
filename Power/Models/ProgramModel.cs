@@ -1,4 +1,4 @@
-﻿using Power.BO;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,8 @@ namespace Power.Models
 {
     public class ProgramModel
     {
-        public Power.BO.Program Program { get; set;}
         public string ImagePath { get; set; }
+        public Power.BO.Program Program { get; set; }
+        public IFormFile ImageFile { get; set; }
     }
 }

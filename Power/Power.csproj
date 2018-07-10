@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Power.Context\Power.Context.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\images\powerbuilding.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
