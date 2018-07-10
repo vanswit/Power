@@ -19,7 +19,7 @@
             <a href="@Url.Action("Details", "Program", new { id = item.Id })">
                 <div class="block-list">
                     @Html.ValueFor(p => item.Name)
-                    @Html.ValueFor(p => item.Image)
+                    <img src="@Url.Content(item.Image.FilePath)" />
                 </div>
             </a>
             }

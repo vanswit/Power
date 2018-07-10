@@ -32,7 +32,7 @@ namespace Power.Context
         {
             using (var context = new PowerContext(options.Options))
             {
-                return context.Programs.ToArray();
+                return context.Programs.Include(i => i.Image).ToArray();
             }
         }
 
@@ -40,7 +40,7 @@ namespace Power.Context
         {
             using (var context = new PowerContext(options.Options))
             {
-                return context.Programs.SingleOrDefault(p => p.Id == id);
+                return context.Programs.Include(i => i.Image).SingleOrDefault(p => p.Id == id);
             }
         }
     }

@@ -22,15 +22,17 @@ namespace Power.Controllers
 
         public IActionResult Index()
         {
+            IEnumerable<ITrainingItem> model;
+
             var optionsBuilder = new DbContextOptionsBuilder<PowerContext>();
 
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0");
 
             var repo = new ProgramDbo(optionsBuilder);
 
-            IEnumerable<ITrainingItem> programs = repo.GetAll();
+            model = repo.GetAll();
 
-            return View(programs);
+            return View(model);
         }
 
         [HttpPost]
@@ -52,7 +54,7 @@ namespace Power.Controllers
 
             var trainingItemImage = new TrainingItemImage();
 
-            trainingItemImage.FilePath = imagePath;
+            trainingItemImage.FilePath = "~/images/" + fileName;
 
             var imageRepo = new TrainingItemImageDbo(optionsBuilder);
 
@@ -77,11 +79,17 @@ namespace Power.Controllers
 
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0");
 
-            var repo = new ProgramDbo(optionsBuilder);
+            var programRepo = new ProgramDbo(optionsBuilder);
 
-            program = repo.GetProgram(id);
+            program = programRepo.GetProgram(id);
 
-            return View(program);
+            ProgramModel model = new ProgramModel()
+            {
+                Program = program,
+                ImagePath = program.Image.FilePath
+            };
+
+            return View(model);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Power.BO.ITrainingItem
+﻿@model Power.Models.ProgramModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,31 +11,25 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Program.Id)
         </dt>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Program.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Program.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.Program.Content)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            @Html.DisplayFor(model => model.Program.Content)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayNameFor(model => model.Program.Price)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Program.Price)
         </dd>
     </dl>
 </div>
