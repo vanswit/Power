@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Power.Context;
+using Power.BO;
+using Microsoft.AspNetCore.Identity;
 
 namespace Power
 {
@@ -27,6 +29,9 @@ namespace Power
             var connection = @"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<Power.Context.PowerContext>(options =>
                 options.UseSqlServer(connection));
+            services.AddIdentity<AppUser, IdentityRole<Guid>>()
+        .AddEntityFrameworkStores<PowerContext>()
+        .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +55,8 @@ namespace Power
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseAuthentication();
         }
     }
 }

@@ -11,9 +11,10 @@ using System;
 namespace Power.Context.Migrations
 {
     [DbContext(typeof(PowerContext))]
-    partial class PowerContextModelSnapshot : ModelSnapshot
+    [Migration("20180712103907_Indentity")]
+    partial class Indentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
