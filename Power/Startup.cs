@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Power.Context;
 using Power.BO;
-using Microsoft.AspNetCore.Identity;
+using Power.Context;
+using Power.Context.Data;
+using System;
 
 namespace Power
 {
@@ -27,11 +26,26 @@ namespace Power
         {
             services.AddMvc();
             var connection = @"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0";
+
             services.AddDbContext<Power.Context.PowerContext>(options =>
                 options.UseSqlServer(connection));
+
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
         .AddEntityFrameworkStores<PowerContext>()
         .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/AccessDenied";
+                options.Cookie.Name = "PowerCookie";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Login";
+                // ReturnUrlParameter requires `using Microsoft.AspNetCore.Authentication.Cookies;`
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +71,8 @@ namespace Power
             });
 
             app.UseAuthentication();
+
+            SeedData.Run(app.ApplicationServices).Wait();
         }
     }
 }

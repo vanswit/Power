@@ -361,6 +361,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CourseDbo.cs" />
+    <Compile Include="Data\SeedData.cs" />
     <Compile Include="Migrations\20180709082741_initialcreate.cs" />
     <Compile Include="Migrations\20180709082741_initialcreate.designer.cs">
       <DependentUpon>20180709082741_initialcreate.cs</DependentUpon>
