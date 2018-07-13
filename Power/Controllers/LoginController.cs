@@ -32,7 +32,8 @@ namespace Power.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("AddProgram", "Program");
+                   
                 }
                 else
                 {

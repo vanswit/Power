@@ -2,9 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Power.BO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Power.Context.Data
@@ -12,8 +10,8 @@ namespace Power.Context.Data
     public class SeedData
     {
         private const string _adminRoleName = "administrator";
-        private string _adminEmail = "admin@walkfido.local";
-        private string _adminPassword = "Hellofido!1234";
+        private string _adminEmail = "admin@Power.com";
+        private string _adminPassword = "P0wer!power";
 
         private string[] _defaultRoles = new string[] { _adminRoleName, "customer" };
 
@@ -62,7 +60,8 @@ namespace Power.Context.Data
                 {
                     Id = Guid.NewGuid(),
                     Email = _adminEmail,
-                    UserName = _adminEmail
+                    UserName = _adminEmail,
+                    SecurityStamp = Guid.NewGuid().ToString()
                 };
 
                 var result = await _userManager.CreateAsync(adminUser, _adminPassword);

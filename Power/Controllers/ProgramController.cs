@@ -69,7 +69,7 @@ namespace Power.Controllers
 
             return RedirectToAction("Index");
         }
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public IActionResult AddProgram()
         {
             return View();

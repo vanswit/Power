@@ -9,6 +9,7 @@ using Power.BO;
 using Power.Context;
 using Power.Context.Data;
 using System;
+using System.Threading.Tasks;
 
 namespace Power
 {
@@ -31,8 +32,10 @@ namespace Power
                 options.UseSqlServer(connection));
 
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
-        .AddEntityFrameworkStores<PowerContext>()
+                .AddEntityFrameworkStores<PowerContext>()
+               
         .AddDefaultTokenProviders();
+          
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -46,6 +49,19 @@ namespace Power
                 options.SlidingExpiration = true;
             });
 
+            //services.AddAuthentication("test").AddCookie("test", options =>
+            //{
+            //    options.AccessDeniedPath = "/AccessDenied";
+            //    options.Cookie.Name = "PowerCookie";
+            //    options.Cookie.HttpOnly = true;
+            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+            //    options.LoginPath = "/Login";
+            //    // ReturnUrlParameter requires `using Microsoft.AspNetCore.Authentication.Cookies;`
+            //    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+            //    options.SlidingExpiration = true;
+            //});
+
+            services.AddTransient<SeedData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +87,9 @@ namespace Power
             });
 
             app.UseAuthentication();
+         
+
+
 
             SeedData.Run(app.ApplicationServices).Wait();
         }
