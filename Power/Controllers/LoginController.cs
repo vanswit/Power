@@ -33,7 +33,6 @@ namespace Power.Controllers
                 if (result.Succeeded)
                 {
                     return RedirectToAction("AddProgram", "Program");
-                   
                 }
                 else
                 {

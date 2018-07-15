@@ -11,8 +11,8 @@ using System;
 namespace Power.Context.Migrations
 {
     [DbContext(typeof(PowerContext))]
-    [Migration("20180712103907_Indentity")]
-    partial class Indentity
+    [Migration("20180715142424_identity")]
+    partial class identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

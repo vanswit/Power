@@ -362,13 +362,25 @@
   <ItemGroup>
     <Compile Include="CourseDbo.cs" />
     <Compile Include="Data\SeedData.cs" />
-    <Compile Include="Migrations\20180709082741_initialcreate.cs" />
-    <Compile Include="Migrations\20180709082741_initialcreate.designer.cs">
-      <DependentUpon>20180709082741_initialcreate.cs</DependentUpon>
+    <Compile Include="Migrations\20180715142202_initial.cs" />
+    <Compile Include="Migrations\20180715142202_initial.designer.cs">
+      <DependentUpon>20180715142202_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20180712103907_Indentity.cs" />
-    <Compile Include="Migrations\20180712103907_Indentity.designer.cs">
-      <DependentUpon>20180712103907_Indentity.cs</DependentUpon>
+    <Compile Include="Migrations\20180715142424_identity.cs" />
+    <Compile Include="Migrations\20180715142424_identity.designer.cs">
+      <DependentUpon>20180715142424_identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20180715142924_identity2.cs" />
+    <Compile Include="Migrations\20180715142924_identity2.designer.cs">
+      <DependentUpon>20180715142924_identity2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20180715143113_identity3.cs" />
+    <Compile Include="Migrations\20180715143113_identity3.designer.cs">
+      <DependentUpon>20180715143113_identity3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20180715143156_identity4.cs" />
+    <Compile Include="Migrations\20180715143156_identity4.designer.cs">
+      <DependentUpon>20180715143156_identity4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\PowerContextModelSnapshot.cs" />
     <Compile Include="PowerContext.cs" />

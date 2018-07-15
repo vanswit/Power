@@ -9,7 +9,6 @@ using Power.BO;
 using Power.Context;
 using Power.Context.Data;
 using System;
-using System.Threading.Tasks;
 
 namespace Power
 {
@@ -25,7 +24,7 @@ namespace Power
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            
             var connection = @"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0";
 
             services.AddDbContext<Power.Context.PowerContext>(options =>
@@ -33,23 +32,15 @@ namespace Power
 
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<PowerContext>()
+                
                
         .AddDefaultTokenProviders();
-          
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.AccessDeniedPath = "/AccessDenied";
-                options.Cookie.Name = "PowerCookie";
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                options.LoginPath = "/Login";
-                // ReturnUrlParameter requires `using Microsoft.AspNetCore.Authentication.Cookies;`
-                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-                options.SlidingExpiration = true;
+            services.ConfigureApplicationCookie(options => { options.LoginPath = "/LogIn";
+                options.AccessDeniedPath = "/Home/Index";
             });
 
-            //services.AddAuthentication("test").AddCookie("test", options =>
+            //services.ConfigureApplicationCookie(options =>
             //{
             //    options.AccessDeniedPath = "/AccessDenied";
             //    options.Cookie.Name = "PowerCookie";
@@ -61,7 +52,20 @@ namespace Power
             //    options.SlidingExpiration = true;
             //});
 
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //})
+            //.AddCookie(options => {
+            //    options.LoginPath = "/Login";
+
+            //});
+
             services.AddTransient<SeedData>();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,19 +83,16 @@ namespace Power
 
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+            
+            SeedData.Run(app.ApplicationServices).Wait();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            app.UseAuthentication();
-         
-
-
-
-            SeedData.Run(app.ApplicationServices).Wait();
         }
     }
 }
