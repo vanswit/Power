@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +23,6 @@ namespace Power
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
             var connection = @"Server=(localdb)\mssqllocaldb;Database=PowerDB;Trusted_Connection=True;ConnectRetryCount=0";
 
             services.AddDbContext<Power.Context.PowerContext>(options =>
@@ -32,12 +30,10 @@ namespace Power
 
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<PowerContext>()
-                
-               
-        .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options => { options.LoginPath = "/LogIn";
-                options.AccessDeniedPath = "/Home/Index";
+                options.AccessDeniedPath = "/AccesDenied";
             });
 
             //services.ConfigureApplicationCookie(options =>
@@ -64,7 +60,6 @@ namespace Power
             //});
 
             services.AddTransient<SeedData>();
-
             services.AddMvc();
         }
 

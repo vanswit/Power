@@ -19,24 +19,53 @@ namespace Power.Controllers
         }
 
         [Route("/login")]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(string returnUrl = "")
         {
-            return View();
+            var model = new LoginModel() { ReturnUrl = returnUrl };
+            return View(model);
         }
 
         [HttpPost("/login")]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("AddProgram", "Program");
+                    return Redirect(returnUrl);
                 }
                 else
                 {
                     throw new Exception("Invalid login attempt");
+                }
+            }
+            return View(model);
+        }
+
+        [Route("/register")]
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
+
+        [HttpPost("/register")]
+        public async Task<IActionResult> Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new AppUser()
+                {
+                    Email = model.Email,
+                    UserName = model.Email
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Home","Index");
                 }
             }
             return View(model);

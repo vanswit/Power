@@ -3,7 +3,7 @@
     ViewData["Title"] = "Login";
 }
 
-<form action="/login" method="POST">
+<form asp-controller="Login" asp-action="Login" asp-route-returnurl = "@Model.ReturnUrl" method="POST">
     <h2>Login to Power</h2>
     <div>
         <label for="email">Email</label>
@@ -14,5 +14,8 @@
         <input type="password" name="password" required autofocus />
     </div>
     <button type="submit">Sign in</button>
+    <div>
+        No account yet ? @Html.ActionLink("Register here", "Register")
+    </div>
 </form>
 
