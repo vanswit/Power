@@ -1,5 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
+
+@using Microsoft.AspNetCore.Identity
+@using Power.BO
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
 <head>
     <title>Power</title>
     <link href="~/css/site.css" rel="stylesheet" />
@@ -7,6 +14,20 @@
 <body>
     <div id="body-container">
         <header>
+            <div>
+                @Html.ActionLink("Login", "Login", "Login", null, null, null, null, null)
+                @if (SignInManager.IsSignedIn(User))
+                {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                               Hello @UserManager.GetUserName(User)!
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                            </li>
+                        </ul>
+                }
+            </div>
             <h1>Power</h1>
             <nav>
                 <ul>

@@ -26,7 +26,7 @@ namespace Power.Controllers
         }
 
         [HttpPost("/login")]
-        public async Task<IActionResult> Login(LoginModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginModel model, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
