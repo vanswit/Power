@@ -15,28 +15,32 @@
     <div id="body-container">
         <header>
             <div>
-                @Html.ActionLink("Login", "Login", "Login", null, null, null, null, null)
                 @if (SignInManager.IsSignedIn(User))
                 {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                               Hello @UserManager.GetUserName(User)!
-                            </li>
-                            <li>
-                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-                            </li>
-                        </ul>
+                    <ul class="no-style">
+                        <li class="header-list">@UserManager.GetUserName(User) | </li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Login", null, null, null, null, new { @class = "header-list" })</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="no-style">
+                        <li>@Html.ActionLink("Login", "Login", "Login", null, null, null, null, new { @class = "header-list" })</li>
+                    </ul>
                 }
             </div>
-            <h1>Power</h1>
-            <nav>
-                <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, null, null, null, null)</li>
-                    <li>@Html.ActionLink("About", "About", "Home", null, null, null, null, null)</li>
-                    <li>@Html.ActionLink("Programs", "Index", "Program", null, null, null, null, null)</li>
-                    <li>@Html.ActionLink("Media", "Index", "Media", null, null, null, null, null)</li>
-                </ul>
-            </nav>
+            <div>
+                <h1>Power</h1>
+            </div>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li>@Html.ActionLink("Home", "Index", "Home", null, null, null, null, null)</li>
+                        <li>@Html.ActionLink("Programs", "Index", "Program", null, null, null, null, null)</li>
+                        <li>@Html.ActionLink("Media", "Index", "Media", null, null, null, null, null)</li>
+                    </ul>
+                </nav>
+            </div>
         </header>
         <div>
             @RenderBody()

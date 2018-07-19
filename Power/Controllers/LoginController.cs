@@ -19,7 +19,7 @@ namespace Power.Controllers
         }
 
         [Route("/login")]
-        public async Task<IActionResult> Login(string returnUrl = "")
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
             var model = new LoginModel() { ReturnUrl = returnUrl };
             return View(model);
@@ -33,7 +33,11 @@ namespace Power.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return Redirect(returnUrl);
+                    if (returnUrl != null)
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    return RedirectToAction("Index","Home",null);
                 }
                 else
                 {
