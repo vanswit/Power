@@ -24,7 +24,7 @@ namespace Power.Controllers
             _env = env;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             ProgramIndexModel model = new ProgramIndexModel();
 
@@ -34,10 +34,7 @@ namespace Power.Controllers
 
             var repo = new ProgramDbo(optionsBuilder);
 
-            if (User.Identity.IsAuthenticated != false)
-            {
-                //model.user = 
-            }
+            
 
             model.items = repo.GetAll();
 

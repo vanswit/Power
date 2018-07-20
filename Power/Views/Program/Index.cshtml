@@ -28,7 +28,7 @@
             }
         </div>
         <div>
-            @if (Model.user != null)
+            @if (User.IsInRole("administrator"))
             {
                 @if (User.IsInRole("administrator"))
                 {
