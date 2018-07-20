@@ -3,9 +3,13 @@
     ViewData["Title"] = "Index";
 }
 
-@model IEnumerable<Power.BO.ITrainingItem>
+@model Power.Models.ProgramIndexModel
 
+@using Microsoft.AspNetCore.Identity
+@using Power.BO
 
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 <div id="view-container">
     <div id="title-container">
@@ -13,16 +17,24 @@
     </div>
     <div id="content-container">
         <div id="block-list-container">
-            @foreach (var item in Model)
+            @foreach (var item in Model.items)
             {
-            <a href="@Url.Action("Details", "Program", new { id = item.Id })">
-                <div class="block-list">
-                    @Html.ValueFor(p => item.Name)
-                    <img id="trainingitem-image" src="@Url.Content(item.Image.FilePath)" />
-                </div>
-            </a>
+                <a href="@Url.Action("Details", "Program", new { id = item.Id })">
+                    <div class="block-list">
+                        @Html.ValueFor(p => item.Name)
+                        <img id="trainingitem-image" src="@Url.Content(item.Image.FilePath)" />
+                    </div>
+                </a>
             }
         </div>
-            @Html.ActionLink("Add Program", "AddProgram")
+        <div>
+            @if (Model.user != null)
+            {
+                @if (User.IsInRole("administrator"))
+                {
+                    @Html.ActionLink("Add Program", "AddProgram")
+                }
+            }
         </div>
-            </div>
+    </div>
+</div>

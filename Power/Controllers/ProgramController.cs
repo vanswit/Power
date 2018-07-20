@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Power.BO;
@@ -15,15 +16,17 @@ namespace Power.Controllers
 {
     public class ProgramController : Controller
     {
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
         IHostingEnvironment _env;
         public ProgramController(IHostingEnvironment env)
         {
             _env = env;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<ITrainingItem> model;
+            ProgramIndexModel model = new ProgramIndexModel();
 
             var optionsBuilder = new DbContextOptionsBuilder<PowerContext>();
 
@@ -31,7 +34,12 @@ namespace Power.Controllers
 
             var repo = new ProgramDbo(optionsBuilder);
 
-            model = repo.GetAll();
+            if (User.Identity.IsAuthenticated != false)
+            {
+                //model.user = 
+            }
+
+            model.items = repo.GetAll();
 
             return View(model);
         }

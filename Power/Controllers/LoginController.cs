@@ -37,7 +37,7 @@ namespace Power.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    return RedirectToAction("Index","Home",null);
+                    return RedirectToAction("Index", "Home", null);
                 }
                 else
                 {
@@ -69,10 +69,23 @@ namespace Power.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Home","Index");
+                    return RedirectToAction("Home", "Index");
                 }
             }
             return View(model);
+        }
+
+        [Route("/logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("loggedout","login");
+        }
+
+        [Route("/loggedout")]
+        public IActionResult LoggedOut()
+        {
+            return View();
         }
     }
 }
